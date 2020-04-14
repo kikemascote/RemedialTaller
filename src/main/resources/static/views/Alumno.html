@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+ <meta charset="UTF-8">
+ <title>Alumno</title>
+
+ <link rel="stylesheet" href="css/bootstrap.min.css">
+
+ <script src="js/lib/jquery-3.4.1.min.js"></script>
+ <script src="js/lib/angular.min.js"></script>
+ <script src="js/lib/bootstrap.min.js"></script>
+ <script src="js/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+ <script src="js/app/alumno/alumnoApp.js"></script>
+
+ <script>
+  $('#saveModal').on('shown.bs.modal', function () {
+   $('#myInput').trigger('focus')
+  })
+ </script>
+
+</head>
+
+<body ng-app="alumnoModule" ng-controller="AlumnoController" ng-cloak>
+
+<div class="container">
+
+ <h1>Alumnos</h1>
+
+ <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveModal" >Add</button>
+ <table class="table table-striped">
+
+  <thead class="thead-dark">
+  <th>ID</th>
+  <th>Amaterno</th>
+  <th>Apaterno</th>
+  <th>Matricula</th>
+  <th>Nombre</th>
+  <th>Opciones</th>
+
+  </thead>
+
+  <tbody>
+
+  <tr ng-repeat="alumno  in alumnos">
+
+   <td>{{alumno.id}}</td>
+   <td>{{alumno.amaterno}}</td>
+   <td>{{alumno.apaterno}}</td>
+   <td>{{alumno.matricula}}</td>
+   <td>{{alumno.nombre}}</td>
+   <td>
+     <button class="btn btn-warning" ng-click="update(alumno)">Modificar</button>
+     <button class="btn btn-danger" ng-click="delete(alumno)">Eliminar</button>
+   </td>
+
+  </tr>
+
+  </tbody>
+ </table>
+
+ <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+   <div class="modal-content">
+    <div class="modal-header">
+     <h5 class="modal-title" id="exampleModalLabel">Agregar Alumno</h5>
+     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+     </button>
+    </div>
+    <div class="modal-body">
+
+     <form>
+
+      <div class="form-group">
+       <label>Matrícula</label>
+       <input type="text" class="form-control" ng-model="alumno.matricula">
+      </div>
+
+      <div class="form-group">
+       <label>Nombre</label>
+       <input type="text" class="form-control" ng-model="alumno.nombre">
+      </div>
+
+      <div class="form-group">
+       <label>A. Paterno</label>
+       <input type="text" class="form-control" ng-model="alumno.apaterno">
+      </div>
+
+      <div class="form-group">
+       <label>A. Materno</label>
+       <input type="text" class="form-control" ng-model="alumno.amaterno">
+      </div>
+    <div class="modal-footer">
+     <button type="submit" ng-click="add(alumno)" class="btn btn-primary">Submit</button>
+     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+    </div>
+    </form>
+
+    </div>
+    </div>
+  </div>
+ </div>
+
+
+</div>
+
+</body>
+</html>
